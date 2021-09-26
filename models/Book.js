@@ -22,7 +22,15 @@ const BookSchema = new mongoose.Schema({
   description: {
     type: String
   },
-
+  claim: {
+    type: String
+  },
+  evidence: {
+    type: String
+  },
+  sepractice: {
+    type: String
+  },
 });
 
 module.exports = Book = mongoose.model('book', BookSchema);
