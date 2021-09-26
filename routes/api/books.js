@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
 // @access Public
 router.post('/', (req, res) => {
   
+  console.log('XXX: res: ',req.body)
   Book.create(req.body)
     .then(book => res.json({ msg: 'Book added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this book' }));
