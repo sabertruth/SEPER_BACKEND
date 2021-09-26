@@ -13,6 +13,7 @@ router.get('/test', (req, res) => res.send('book route testing!'));
 // @description Get all books
 // @access Public
 router.get('/', (req, res) => {
+  console.log('XXX: get called')
   Book.find()
     .then(books => res.json(books))
     .catch(err => res.status(404).json({ nobooksfound: 'No Books found' }));
@@ -21,19 +22,26 @@ router.get('/', (req, res) => {
 // @route GET api/books/:id
 // @description Get single book by id
 // @access Public
-router.get('/:id', (req, res) => {
-  Book.findById(req.params.id)
-    .then(book => res.json(book))
-    .catch(err => res.status(404).json({ nobookfound: 'No Book found' }));
-});
+// router.get('/:id', (req, res) => {
+//   Book.findById(req.params.id)
+//     .then(book => res.json(book))
+//     .catch(err => res.status(404).json({ nobookfound: 'No Book found' }));
+// });
 
 // @route GET api/books
 // @description add/save book
 // @access Public
 router.post('/', (req, res) => {
+  
+  console.log('XXX: res: ',req.body)
   Book.create(req.body)
     .then(book => res.json({ msg: 'Book added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this book' }));
+});
+
+router.get('/find', (req, res) => {
+  const {author} = req.query
+  Book.find({author: new RegExp(author, 'i')}).then(books=>res.json({books: books})).catch(err=>res.status(400).json({ error: 'Unable search article' }));
 });
 
 // @route GET api/books/:id

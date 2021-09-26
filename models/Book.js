@@ -5,27 +5,24 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  isbn: {
-    type: String,
-    required: true
-  },
   author: {
     type: String,
     required: true
   },
+  source: {
+    type: String,
+    required: true
+  },
+  yop: {
+    type: String
+  },
+  doi: {
+    type: String
+  },
   description: {
     type: String
   },
-  published_date: {
-    type: Date
-  },
-  publisher: {
-    type: String
-  },
-  updated_date: {
-    type: Date,
-    default: Date.now
-  }
+
 });
 
 module.exports = Book = mongoose.model('book', BookSchema);
